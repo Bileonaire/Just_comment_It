@@ -7,8 +7,12 @@ def signup():
     username = input("Input username: ")
     password = input("Input password: ")
     confirm_password = input("Confirm password: ")
-    if confirm_password != password:
+
+    while confirm_password != password:
         print ("error: passwords do not match")
+        password = input("Input password: ")
+        confirm_password = input("Confirm password: ")
+
     else:
         role = 'norm_user'
         comment =''
