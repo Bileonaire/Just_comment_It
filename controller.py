@@ -23,11 +23,12 @@ def signup():
         models.users.append(user_details)
         print(models.users)
         print ("Signup Successfull",user_details["username"],user_details["role"])
-username =''
+user =''
 role=''
 def login():
     """Authenticates login"""
     print("--------LOGIN----------")
+    global user
     username = input("Enter username: ")
     password = input("Enter password: ")
     for user in models.users:
@@ -43,9 +44,10 @@ def login():
 
 def add_comment():
     """ Comments"""
+    global user
     comment_id = 1
     print("--------Create comment----------")
-    author = username
+    author = user
     message = input("Enter comment: ")
     time_stamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
     new_comment = Comments(comment_id,author,message,time_stamp)
@@ -61,13 +63,12 @@ if action == "A":
     if action == "A":
         signup()
     login()
-login()
-
+else:
+    login()
+action = input("Type C to see comments, D to create a comment: ")
+if action == "C":
+    print(models.comments)    
 add_comment()
-
-
-login()
-
 
 # norm_user = input("Type A to add comment, B to edit comment: ")admin =  input("Type A to add comment, B to edit comment, C to delete comment: ")
 # moderator =  input("Type A to add comment, B to edit comment, C to delete comment: ")
