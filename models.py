@@ -30,8 +30,9 @@ class Admin(Moderator):
         self.last_seen = last_seen
 
 class Comments():
-    def __init__(self,author,message,timestamp):
+    def __init__(self,id,author,message,timestamp):
         self.author = author 
+        self.id = id
         self.message = message
         self.timestamp = timestamp
 
