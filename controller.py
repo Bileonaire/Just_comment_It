@@ -1,4 +1,5 @@
 import models
+import datetime
 from models import User, Admin, Moderator, comments
 
 
@@ -19,24 +20,17 @@ def signup():
         print(models.users)
         print ("Signup Successfull",user_details["username"],user_details["role"])
 
+def login():
+    """Authenticates login"""
+    print("--------LOGIN----------")
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    for user in models.users:
+        if user['username'] == username and user['password'] == password:
+            user['last_seen'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+            print ("Login Successfull",user["username"],user["role"],"Logged in at:", user['last_seen'])
+        else:
+            print("Username or password invalid")
+            
 signup()
-
-# def login():
-#     """controlls login """
-#     username = input("Input username: ")
-#     password = input("Input password: ")
-#     u_name = User.user_details[username]
-#     if password == u_name[0] and u_name[1] == 'norm_user':
-#         print('logged in as normal user')
-#         norm_user = User(username, password)
-#         norm_user.add_comment(username)
-    
-#     elif u_name[0] == password and u_name[1] == 'moderator':
-#         print('logged in as moderator')
-#         mod_user = Moderator()
-
-#     elif u_name[0] == password and u_name[1] == 'admin':
-#         print('logged in as admin')
-#         admin_user = Admin()
-#     else:
-#         print('wrong username or password')
+login()
